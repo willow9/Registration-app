@@ -27,22 +27,22 @@
     </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
-	$.getJSON('words.json', function(data) {
-	console.log('It worked!');
+// 	$.getJSON('words.json', function(data) {
+// 	console.log('It worked!');
+// 	});
+	
+	
+	$.ajax({
+	url: 'https://api.myjson.com/bins/ahn99',
+	dataType: 'json',
+	type: 'get',
+	cache: 'true',
+	success: function(data){
+	$(data.patients).each(function(index, value){
+	console.log(value.id);
 	});
-	
-	
-// 	$.ajax({
-// 	url: 'https://api.myjson.com/bins/ahn99',
-// 	dataType: 'json',
-// 	type: 'get',
-// 	cache: 'true',
-// 	success: function(data){
-// 	$(data.patients).each(function(index, value){
-// 	console.log(value.id);
-// 	});
-// 	}
-// 	});
+	}
+	});
 	
 // 	var txt = '{"name":"Jerry","id":"Negrell"}';
 
