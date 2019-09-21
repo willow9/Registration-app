@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>New Tab App</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/primitive-ui/dist/css/main.css" />
+  </head>
+
+  <body>
+    <div class="small-container">
+      <h1>New Tab App</h1>
+
+      <!-- more will go here -->
+	  
+	  
+	  <form>
+  <input id="item" type="text" placeholder="New" required />
+</form>
+
+<h2>Items</h2>
+<ul></ul>
+
+<button>Clear All</button>
+    </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+	/*$.getJSON('words.json', function(data) {
+	console.log('It worked!');
+	});
+	
+	
+	$.ajax({
+	url: 'https://api.myjson.com/bins/ahn99',
+	dataType: 'json',
+	type: 'get',
+	cache: 'true',
+	success: function(data){
+	$(data.patients).each(function(index, value){
+	console.log(value.id);
+	});
+	}
+	});
+	*/
+	var txt = '{"name":"Jerry","id":"Negrell"}';
+
+// var data = JSON.parse(txt);  //parse the JSON
+// data.employees.push({        //add the employee
+//     firstName:"Mike",
+//     lastName:"Rut",
+//     time:"10:00 am",
+//     email:"rut@bah.com",
+//     phone:"800-888-8888",
+//     image:"images/mike.jpg"
+// });
+// txt = JSON.stringify(data);  //reserialize to JSON
+	$.ajax({
+    type: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
+    dataType: 'json', // Set datatype - affects Accept header
+    url: "https://api.myjson.com/bins/ahn99.json", // A valid URL
+    
+    data: txt, // Some data e.g. Valid JSON as a string,
+    success: function(data){
+                    console.log(data);
+                }
+});
+	</script>
+  </body>
+</html>
