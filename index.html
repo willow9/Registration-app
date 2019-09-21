@@ -27,24 +27,24 @@
     </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
-	/*$.getJSON('words.json', function(data) {
+	$.getJSON('words.json', function(data) {
 	console.log('It worked!');
 	});
 	
 	
-	$.ajax({
-	url: 'https://api.myjson.com/bins/ahn99',
-	dataType: 'json',
-	type: 'get',
-	cache: 'true',
-	success: function(data){
-	$(data.patients).each(function(index, value){
-	console.log(value.id);
-	});
-	}
-	});
-	*/
-	var txt = '{"name":"Jerry","id":"Negrell"}';
+// 	$.ajax({
+// 	url: 'https://api.myjson.com/bins/ahn99',
+// 	dataType: 'json',
+// 	type: 'get',
+// 	cache: 'true',
+// 	success: function(data){
+// 	$(data.patients).each(function(index, value){
+// 	console.log(value.id);
+// 	});
+// 	}
+// 	});
+	
+// 	var txt = '{"name":"Jerry","id":"Negrell"}';
 
 // var data = JSON.parse(txt);  //parse the JSON
 // data.employees.push({        //add the employee
@@ -56,16 +56,16 @@
 //     image:"images/mike.jpg"
 // });
 // txt = JSON.stringify(data);  //reserialize to JSON
-	$.ajax({
-    type: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
-    dataType: 'json', // Set datatype - affects Accept header
-    url: "https://api.myjson.com/bins/ahn99.json", // A valid URL
+// 	$.ajax({
+//     type: 'GET', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
+//     dataType: 'json', // Set datatype - affects Accept header
+//     url: "words.json", // A valid URL
     
-    data: txt, // Some data e.g. Valid JSON as a string,
-    success: function(data){
-                    console.log(data);
-                }
-});
+//     data: txt, // Some data e.g. Valid JSON as a string,
+//     success: function(data){
+//                     console.log(data);
+//                 }
+// });
 	</script>
   </body>
 </html>
