@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Registration App</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/primitive-ui/dist/css/main.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+</head>
+
+
+<body>
+ 
+        <a class="button" href="specialist.html">Specialist Dashboard</a>
+        <a class="button" href="display.html">Queue Display</a>
+      
+
+    <div class="small-container">
+        <h1>Add new customer</h1>
+
+        <form id="myForm">
+            <input id="name" type="text" placeholder="Name" required  />
+            <input id="id" type="text" placeholder="Id" required />
+            <select id="spec" required>
+                <option value="">Select</option>
+                <option value="Flying Specialist">Flying Specialist</option>
+                <option value="Invisibility Specialist">Invisibility Specialist</option>
+                <option value="Transformation Specialist">Transformation Specialist</option>
+
+            </select>
+            <button type="submit" onclick="validate()">Add new customer</button>
+        </form>
+
+
+
+        <h2>Customers</h2>
+
+        <table id="table" class="striped-table">
+            <tr>
+                    <th>Id</th>
+                <th>Name</th>
+                <th>Registered</th>
+                <th>Serviced</th>
+                <th>Specialist</th>
+            </tr>
+        </table>
+
+    </div>
+</body>
+
+</html>
