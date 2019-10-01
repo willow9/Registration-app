@@ -1,10 +1,9 @@
-{
-"patients":[
-{"name":"ay","id":"533"},
-{"name":"kiy","id":"33"},
-{"name":"iy","id":"33"},
-{"name":"iy","id":"3"},
-{"name":"kiy","id":"35"},
-{"name":"kiy","id":"34"}
+[
+    {"id":"1","name":"Spiderman", "timestamp": "15696673410000", "servicedDate":"1569560980000", "specialist":"Flying Specialist"},
+    {"id":"2","name":"Batman", "timestamp": "1569568830000", "servicedDate":"1569561980000", "specialist":"Flying Specialist"},
+    {"id":"3","name":"Hulk", "timestamp": "1569572130000", "servicedDate":"1569563150000", "specialist":"Flying Specialist"},
+    {"id":"4","name":"Wolverine", "timestamp": "1569573930000", "servicedDate":"1569564520000", "specialist":"Flying Specialist"},
+    {"id":"5","name":"Storm", "timestamp": "1569574530000", "servicedDate":"1569561260000", "specialist":"Flying Specialist"},
+    {"id":"6","name":"Iceman", "timestamp": "1569575190000", "servicedDate":"1569565550000", "specialist":"Flying Specialist"}
+    
 ]
-}

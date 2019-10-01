@@ -1,71 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>New Tab App</title>
+    <title>Registration App</title>
 
     <link rel="stylesheet" href="https://unpkg.com/primitive-ui/dist/css/main.css" />
-  </head>
 
-  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+</head>
+
+
+<body onload="loadCustomers()">
+ 
+        <a class="button" href="specialist.html">Specialist Dashboard</a>
+        <a class="button" href="display.html">Queue Display</a>
+      
+
     <div class="small-container">
-      <h1>New Tab App</h1>
+        <h1>Add new customer</h1>
 
-      <!-- more will go here -->
-	  
-	  
-	  <form>
-  <input id="item" type="text" placeholder="New" required />
-</form>
+        <form id="myForm">
+            <input id="name" type="text" placeholder="Name" required  />
+            <input id="id" type="text" placeholder="Id" required />
+            <select id="spec" required>
+                <option value="">Select</option>
+                <option value="Flying Specialist">Flying Specialist</option>
+                <option value="Invisibility Specialist">Invisibility Specialist</option>
+                <option value="Transformation Specialist">Transformation Specialist</option>
 
-<h2>Items</h2>
-<ul></ul>
+            </select>
+            <button type="submit" onclick="validate()">Add new customer</button>
+        </form>
 
-<button>Clear All</button>
+
+
+        <h2>Customers</h2>
+
+        <table id="table" class="striped-table">
+            <tr>
+                    <th>Id</th>
+                <th>Name</th>
+                <th>Registered</th>
+                <th>Serviced</th>
+                <th>Specialist</th>
+            </tr>
+        </table>
+
     </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
-	/*$.getJSON('words.json', function(data) {
-	console.log('It worked!');
-	});
-	
-	
-	$.ajax({
-	url: 'https://api.myjson.com/bins/ahn99',
-	dataType: 'json',
-	type: 'get',
-	cache: 'true',
-	success: function(data){
-	$(data.patients).each(function(index, value){
-	console.log(value.id);
-	});
-	}
-	});
-	*/
-	var txt = '{"name":"Jerry","id":"Negrell"}';
+</body>
 
-// var data = JSON.parse(txt);  //parse the JSON
-// data.employees.push({        //add the employee
-//     firstName:"Mike",
-//     lastName:"Rut",
-//     time:"10:00 am",
-//     email:"rut@bah.com",
-//     phone:"800-888-8888",
-//     image:"images/mike.jpg"
-// });
-// txt = JSON.stringify(data);  //reserialize to JSON
-	$.ajax({
-    type: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
-    dataType: 'json', // Set datatype - affects Accept header
-    url: "https://api.myjson.com/bins/ahn99.json", // A valid URL
-    
-    data: txt, // Some data e.g. Valid JSON as a string,
-    success: function(data){
-                    console.log(data);
-                }
-});
-	</script>
-  </body>
 </html>
