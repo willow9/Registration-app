@@ -1,42 +1,53 @@
+function addNewCustomer() {
+  if (validate()) {
+    var newName = document.getElementById("name").value;
+    var newId = generateId();
+    var e = document.getElementById("spec");
+    var dropdownValue = e.options[e.selectedIndex].value;
+    const persons = JSON.parse(localStorage.getItem("persons"));
+
+    var person = {
+      name: newName,
+      id: newId,
+      timestamp: Date.now(),
+      servicedDate: "not served",
+      specialist: dropdownValue
+    };
+    persons.push(person);
+    localStorage.setItem("persons", JSON.stringify(persons));
+    reloadTable();
+  }
+}
+
 function validate() {
   var newName = document.getElementById("name");
-  var newId = document.getElementById("id");
   var e = document.getElementById("spec");
-  var strUser = e.options[e.selectedIndex].value;
+  var dropdownValue = e.options[e.selectedIndex].value;
 
-  if (!newName.validity.valueMissing && !newId.validity.valueMissing && strUser!="") {
-    
-      addNewCustomer();
-    }
-  }
+  if (
+    !newName.validity.valueMissing && dropdownValue != "") {
+    return true;
+  } else return false;
+}
+
+function generateId() {
+  const persons = JSON.parse(localStorage.getItem("persons"));
+  const ids = [];
+  persons.forEach(element => {
+    ids.push(element.id);
+  });
+  return Math.max(...ids) + 1;
+}
 
 function dropdownValidation() {
   // var e = document.getElementById("spec");
-  // var strUser = e.options[e.selectedIndex].value;
+  // var dropdownValue = e.options[e.selectedIndex].value;
 
-  // if (strUser == 0) {
-  //   console.log("chose from dropdown..")
+  // if  dropdownValue == 0) {
+  //   console.log("chose from dropdownValue..")
 
   // }
   return false;
-}
-
-function addNewCustomer() {
-  var newName = document.getElementById("name").value;
-  var newId = document.getElementById("id").value;
-  var e = document.getElementById("spec");
-  var strUser = e.options[e.selectedIndex].value;
-  const persons = JSON.parse(localStorage.getItem("persons"));
-  var person = {
-    name: newName,
-    id: newId,
-    timestamp: Date.now(),
-    servicedDate:"not served",
-    specialist: strUser
-  };
-  persons.push(person);
-  localStorage.setItem("persons", JSON.stringify(persons));
-  reloadTable();
 }
 
 function reloadTable() {
@@ -47,16 +58,14 @@ function reloadTable() {
 }
 
 function loadCustomers() {
-  console.log("Customers loading...");
-
   var person = {
     id: "",
     name: "",
     timestamp: "",
     servicedDate: "",
     specialist: ""
-
   };
+
   if (localStorage.getItem("persons") == null) {
     var persons = [];
 
@@ -75,12 +84,18 @@ function loadCustomers() {
             specialist: value.specialist
           };
           persons.push(person);
+          persons.sort((a, b) => (a.timestamp > b.timestamp ? 1 : -1));
 
-          persons.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1)
-
-          rowMaker(0, value.name, value.id, value.timestamp, value.servicedDate, value.specialist, "table");
+          rowMaker(
+            0,
+            value.name,
+            value.id,
+            value.timestamp,
+            value.servicedDate,
+            value.specialist,
+            "table"
+          );
         });
-        // firstClick=false;
         localStorage.setItem("persons", JSON.stringify(persons));
       }
     });
@@ -92,12 +107,25 @@ function loadCustomers() {
     const newPersons = JSON.parse(localStorage.getItem("persons"));
     newPersons.forEach(element => {
       console.log(element.specialist);
-      rowMaker(0, element.name, element.id, element.timestamp, element.servicedDate, element.specialist, "table");
+      rowMaker(
+        0,
+        element.name,
+        element.id,
+        element.timestamp,
+        element.servicedDate,
+        element.specialist,
+        "table"
+      );
     });
   }
+  // var a = new Date();
+  // c= a.toString().substr(3, 21);
+  //  b= a.toISOString();
+  // console.log(c);
+  // console.log(b);
 }
 
-// const a = "";
+
 
 // function liMaker(a) {
 //   const ul = document.getElementById("ul");
@@ -106,8 +134,16 @@ function loadCustomers() {
 //   ul.append(li);
 // }
 
-function rowMaker(index, name, id, timestamp, servicedDate, specialist, tableName) {
-date = new Date(timestamp*1);
+function rowMaker(
+  index,
+  name,
+  id,
+  timestamp,
+  servicedDate,
+  specialist,
+  tableName
+) {
+  date = new Date(timestamp * 1);
 
   const table = document.getElementById(tableName);
   const row = table.insertRow(index + 1);
@@ -118,30 +154,33 @@ date = new Date(timestamp*1);
   const cell5 = row.insertCell(4);
   cell1.innerHTML = id;
   cell2.innerHTML = name;
-  cell3.innerHTML = date.toISOString().replace("T"," ").substr(0, 16);
+  // cell3.innerHTML = date.toISOString().replace("T", " ").substr(0, 16);
+  cell3.innerHTML = date.toString().substr(3, 18);
   cell4.innerHTML = servicedDate;
   cell5.innerHTML = specialist;
 }
 
 // SPECIALIST PAGE
 
- function logSpecialist(){
-  
-    
-     const newPersons = JSON.parse(localStorage.getItem("persons"));
-     newPersons.forEach(element => {
-       if(element.specialist==="Flying Specialist"){
-       console.log(element.id);
-       rowMaker(0, element.name, element.id, element.timestamp, element.servicedDate, element.specialist, "table2");
-       }
-      })
-    //  });
-    //es5 style
-// var javscriptPersons = newPersons.filter(function(personObj){
-//   return personObj.specialist.indexOf("Flying Specialist") > -1
-// });console.log(javscriptPersons);
-  }
-
-
-
-
+function logSpecialist() {
+  const newPersons = JSON.parse(localStorage.getItem("persons"));
+  newPersons.forEach(element => {
+    if (element.specialist === "Flying Specialist") {
+      console.log(element.id);
+      rowMaker(
+        0,
+        element.name,
+        element.id,
+        element.timestamp,
+        element.servicedDate,
+        element.specialist,
+        "table2"
+      );
+    }
+  });
+  //  });
+  //es5 style
+  // var javscriptPersons = newPersons.filter(function(personObj){
+  //   return personObj.specialist.indexOf("Flying Specialist") > -1
+  // });console.log(javscriptPersons);
+}
