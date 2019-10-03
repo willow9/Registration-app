@@ -1,31 +1,44 @@
+/* eslint-disable arrow-parens */
+/* eslint-disable linebreak-style */
+/* eslint-disable require-jsdoc */
+class Person {
+  constructor(name, id, timestamp, servicedDate, specialist) {
+    this.name = name;
+    this.id = id;
+    this.timestamp = timestamp;
+    this.servicedDate = servicedDate;
+    this.specialist = specialist;
+  }
+}
+
 function addNewCustomer() {
   if (validate()) {
-    var newName = document.getElementById("name").value;
-    var newId = generateId();
-    var e = document.getElementById("spec");
-    var dropdownValue = e.options[e.selectedIndex].value;
+    const newName = document.getElementById("name").value;
+    const newId = generateId();
+    const e = document.getElementById("spec");
+    const dropdownValue = e.options[e.selectedIndex].value;
     const persons = JSON.parse(localStorage.getItem("persons"));
 
-    var person = {
-      name: newName,
-      id: newId,
-      timestamp: Date.now(),
-      servicedDate: "not served",
-      specialist: dropdownValue
-    };
+    const person = new Person(
+      newName,
+      newId,
+      Date.now(),
+      "not served",
+      dropdownValue
+    );
     persons.push(person);
     localStorage.setItem("persons", JSON.stringify(persons));
+
     reloadTable();
   }
 }
 
 function validate() {
-  var newName = document.getElementById("name");
-  var e = document.getElementById("spec");
-  var dropdownValue = e.options[e.selectedIndex].value;
+  const newName = document.getElementById("name");
+  const e = document.getElementById("spec");
+  const dropdownValue = e.options[e.selectedIndex].value;
 
-  if (
-    !newName.validity.valueMissing && dropdownValue != "") {
+  if (!newName.validity.valueMissing && dropdownValue != "") {
     return true;
   } else return false;
 }
@@ -39,17 +52,6 @@ function generateId() {
   return Math.max(...ids) + 1;
 }
 
-function dropdownValidation() {
-  // var e = document.getElementById("spec");
-  // var dropdownValue = e.options[e.selectedIndex].value;
-
-  // if  dropdownValue == 0) {
-  //   console.log("chose from dropdownValue..")
-
-  // }
-  return false;
-}
-
 function reloadTable() {
   const newPersons = JSON.parse(localStorage.getItem("persons"));
   newPersons.forEach(element => {
@@ -58,16 +60,8 @@ function reloadTable() {
 }
 
 function loadCustomers() {
-  var person = {
-    id: "",
-    name: "",
-    timestamp: "",
-    servicedDate: "",
-    specialist: ""
-  };
-
   if (localStorage.getItem("persons") == null) {
-    var persons = [];
+    const persons = [];
 
     $.ajax({
       url: "words.json",
@@ -76,16 +70,16 @@ function loadCustomers() {
       cache: "false",
       success: function(data) {
         $(data).each(function(index, value) {
-          person = {
-            id: value.id,
-            name: value.name,
-            timestamp: value.timestamp,
-            servicedDate: value.servicedDate,
-            specialist: value.specialist
-          };
-          persons.push(person);
+          persons.push(
+            new Person(
+              value.name,
+              value.id,
+              value.timestamp,
+              value.servicedDate,
+              value.specialist
+            )
+          );
           persons.sort((a, b) => (a.timestamp > b.timestamp ? 1 : -1));
-
           rowMaker(
             0,
             value.name,
@@ -125,8 +119,6 @@ function loadCustomers() {
   // console.log(b);
 }
 
-
-
 // function liMaker(a) {
 //   const ul = document.getElementById("ul");
 //   const li = document.createElement("li");
@@ -158,29 +150,4 @@ function rowMaker(
   cell3.innerHTML = date.toString().substr(3, 18);
   cell4.innerHTML = servicedDate;
   cell5.innerHTML = specialist;
-}
-
-// SPECIALIST PAGE
-
-function logSpecialist() {
-  const newPersons = JSON.parse(localStorage.getItem("persons"));
-  newPersons.forEach(element => {
-    if (element.specialist === "Flying Specialist") {
-      console.log(element.id);
-      rowMaker(
-        0,
-        element.name,
-        element.id,
-        element.timestamp,
-        element.servicedDate,
-        element.specialist,
-        "table2"
-      );
-    }
-  });
-  //  });
-  //es5 style
-  // var javscriptPersons = newPersons.filter(function(personObj){
-  //   return personObj.specialist.indexOf("Flying Specialist") > -1
-  // });console.log(javscriptPersons);
 }

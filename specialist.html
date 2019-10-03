@@ -11,6 +11,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="js/specialist.js"></script>
 </head>
 
 
@@ -25,17 +26,19 @@
 
         <h1>Login</h1>
 
-        <!-- <form id="myForm2">
-                <select id="spec1">
+        <form id="myForm2">
+                <select id="spec1" required>
                         <option value="">Select</option>
-                        <option value="Flying Specialist">Flying Specialist</option>
+                        <option value="1">Flying Specialist</option>
                         <option value="Invisibility Specialist">Invisibility Specialist</option>
                         <option value="Transformation Specialist">Transformation Specialist</option>
-                    </select> -->
-            <!-- <input id="password" type="text" placeholder="Password"/> -->
-            
-            <button type="submit" onclick="logSpecialist()">Log in</button>
-        <!-- </form> -->
+                    </select> 
+            <input id="password" type="text" placeholder="Password" required/>
+            <button onclick="logSpecialist()">Log in</button>
+        </form> 
+       
+
+        
 
         <table id="table2" class="striped-table">
                 <tr>
