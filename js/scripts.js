@@ -13,38 +13,32 @@ class Person {
 
 function addNewCustomer() {
   if (validate()) {
-    const newName = document.getElementById("name").value;
+    const newName = document.getElementById('name').value;
     const newId = generateId();
-    const e = document.getElementById("spec");
+    const e = document.getElementById('spec');
     const dropdownValue = e.options[e.selectedIndex].value;
-    const persons = JSON.parse(localStorage.getItem("persons"));
+    const persons = JSON.parse(localStorage.getItem('persons'));
 
-    const person = new Person(
-      newName,
-      newId,
-      Date.now(),
-      "not served",
-      dropdownValue
-    );
+    const person = new Person(newName, newId, Date.now(), 'not served', dropdownValue);
     persons.push(person);
-    localStorage.setItem("persons", JSON.stringify(persons));
+    localStorage.setItem('persons', JSON.stringify(persons));
 
     reloadTable();
   }
 }
 
 function validate() {
-  const newName = document.getElementById("name");
-  const e = document.getElementById("spec");
+  const newName = document.getElementById('name');
+  const e = document.getElementById('spec');
   const dropdownValue = e.options[e.selectedIndex].value;
 
-  if (!newName.validity.valueMissing && dropdownValue != "") {
+  if (!newName.validity.valueMissing && dropdownValue != '') {
     return true;
   } else return false;
 }
 
 function generateId() {
-  const persons = JSON.parse(localStorage.getItem("persons"));
+  const persons = JSON.parse(localStorage.getItem('persons'));
   const ids = [];
   persons.forEach(element => {
     ids.push(element.id);
@@ -53,44 +47,28 @@ function generateId() {
 }
 
 function reloadTable() {
-  const newPersons = JSON.parse(localStorage.getItem("persons"));
+  const newPersons = JSON.parse(localStorage.getItem('persons'));
   newPersons.forEach(element => {
-    rowMaker(0, element.name, element.id, element.timestamp, "table");
+    rowMaker(0, element.name, element.id, element.timestamp, 'table');
   });
 }
 
 function loadCustomers() {
-  if (localStorage.getItem("persons") == null) {
+  if (localStorage.getItem('persons') == null) {
     const persons = [];
 
     $.ajax({
-      url: "words.json",
-      dataType: "json",
-      type: "get",
-      cache: "false",
+      url: 'words.json',
+      dataType: 'json',
+      type: 'get',
+      cache: 'false',
       success: function(data) {
         $(data).each(function(index, value) {
-          persons.push(
-            new Person(
-              value.name,
-              value.id,
-              value.timestamp,
-              value.servicedDate,
-              value.specialist
-            )
-          );
+          persons.push(new Person(value.name, value.id, value.timestamp, value.servicedDate, value.specialist));
           persons.sort((a, b) => (a.timestamp > b.timestamp ? 1 : -1));
-          rowMaker(
-            0,
-            value.name,
-            value.id,
-            value.timestamp,
-            value.servicedDate,
-            value.specialist,
-            "table"
-          );
+          rowMaker(0, value.name, value.id, value.timestamp, value.servicedDate, value.specialist, 'table');
         });
-        localStorage.setItem("persons", JSON.stringify(persons));
+        localStorage.setItem('persons', JSON.stringify(persons));
       }
     });
     // const newPersons = JSON.parse(localStorage.getItem("persons"));
@@ -98,18 +76,10 @@ function loadCustomers() {
     //     rowMaker(0, element.name, element.id);
     // });
   } else {
-    const newPersons = JSON.parse(localStorage.getItem("persons"));
+    const newPersons = JSON.parse(localStorage.getItem('persons'));
     newPersons.forEach(element => {
       console.log(element.specialist);
-      rowMaker(
-        0,
-        element.name,
-        element.id,
-        element.timestamp,
-        element.servicedDate,
-        element.specialist,
-        "table"
-      );
+      rowMaker(0, element.name, element.id, element.timestamp, element.servicedDate, element.specialist, 'table');
     });
   }
   // var a = new Date();
@@ -126,15 +96,7 @@ function loadCustomers() {
 //   ul.append(li);
 // }
 
-function rowMaker(
-  index,
-  name,
-  id,
-  timestamp,
-  servicedDate,
-  specialist,
-  tableName
-) {
+function rowMaker(index, name, id, timestamp, servicedDate, specialist, tableName) {
   date = new Date(timestamp * 1);
 
   const table = document.getElementById(tableName);
