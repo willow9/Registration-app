@@ -19,39 +19,40 @@
 
     <a class="button" href="index.html">Administrator Dashboard</a>
     <a class="button" href="display.html">Queue Display</a>
+    <a class="button" id="logOut" style='visibility:hidden' onclick=location.reload()>Log out</a>
 
 
     <div class="small-container">
 
+        <div id="loginForm">
+            <h1>Login</h1>
 
-        <h1>Login</h1>
+            <form id="myForm2" onsubmit="return false">
 
-        <form id="myForm2" onsubmit="return false">
+                <select id="spec1" required>
+                    <option value="">Select</option>
+                    <option value="Flying Specialist">Flying Specialist</option>
+                    <option value="Invisibility Specialist">Invisibility Specialist</option>
+                    <option value="Transformation Specialist">Transformation Specialist</option>
+                </select>
+                <input id="password" type="text" placeholder="Password" required />
+                <button id="login" type="submit" onclick="logSpecialist()">Log in</button>
+            </form>
+        </div>
 
-            <select id="spec1" required>
-                <option value="">Select</option>
-                <option value="Flying Specialist">Flying Specialist</option>
-                <option value="Invisibility Specialist">Invisibility Specialist</option>
-                <option value="Transformation Specialist">Transformation Specialist</option>
-            </select>
-            <input id="password" type="text" placeholder="Password" required />
-            <button id="login" type="submit" onclick="logSpecialist()">Log in</button>
-        </form>
+        <div id="specialistTable" hidden>
+            <h2 id="title">Specialist</h2>
 
-
-        <h2 id="title">?</h2>
-
-
-        <table id="table2" class="striped-table">
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Registered</th>
-                <th>Serviced</th>
-                <th>Actions</th>
-            </tr>
-        </table>
-
+            <table id="table2" class="striped-table">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Registered</th>
+                    <th>Serviced</th>
+                    <th>Actions</th>
+                </tr>
+            </table>
+        </div>
     </div>
 </body>
 

@@ -28,6 +28,9 @@ function logSpecialist() {
     fillTableForSpecialist();
     document.getElementById('login').disabled = true;
     document.getElementById('myForm2').reset();
+    document.getElementById('loginForm').hidden = true;
+    document.getElementById('specialistTable').hidden = false;
+    document.getElementById('logOut').style.visibility = 'visible';
   }
 }
 
@@ -94,13 +97,12 @@ function changeStatus(id) {
   localStorage.setItem('persons', JSON.stringify(persons));
   // document.getElementById("table2").innerHTML = "";
 
-  var table = document.getElementById("table2");
+  var table = document.getElementById('table2');
   //or use :  var table = document.all.tableid;
-  for(var i = table.rows.length - 1; i > 0; i--)
-  {
-      table.deleteRow(i);
+  for (var i = table.rows.length - 1; i > 0; i--) {
+    table.deleteRow(i);
   }
- 
+
   const newPersons = JSON.parse(localStorage.getItem('persons'));
   newPersons.forEach(element => {
     if (element.specialist === document.getElementById('title').innerHTML) {
@@ -108,3 +110,4 @@ function changeStatus(id) {
     }
   });
 }
+ 
