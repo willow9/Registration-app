@@ -98,6 +98,9 @@ function loadCustomers() {
 
 function rowMaker(index, name, id, timestamp, servicedDate, specialist, tableName) {
   date = new Date(timestamp * 1);
+  if (servicedDate != 'not served') {
+    servicedDate = new Date(servicedDate * 1).toString().substr(3, 18);
+  }
 
   const table = document.getElementById(tableName);
   const row = table.insertRow(index + 1);
