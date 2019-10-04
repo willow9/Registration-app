@@ -2,41 +2,38 @@
 /* eslint-disable arrow-parens */
 /* eslint-disable require-jsdoc */
 function dropdownValidation() {
-  const e = document.getElementById("spec1");
+  const e = document.getElementById('spec1');
   const dropdownValue = e.options[e.selectedIndex].value;
+  const pass = document.getElementById('password').value;
 
-  if (dropdownValue != "") {
+  if (dropdownValue == 'Flying Specialist' && pass == '1') {
+    return dropdownValue;
+  }
+  if (dropdownValue == 'Invisibility Specialist' && pass == '2') {
+    return dropdownValue;
+  }
+
+  if (dropdownValue == 'Transformation Specialist' && pass == '3') {
     return dropdownValue;
   }
 }
 
-function passwordvalidation() {}
+function passwordvalidation() {
+  if (dropdownValidation()) {
+  }
+}
 
 function logSpecialist() {
+  dropdownValidation();
   console.log(dropdownValidation());
-  if (dropdownValidation()) {
-    console.log("Flyyyyyy...");
-    const newPersons = JSON.parse(localStorage.getItem("persons"));
+  if (dropdownValidation() != undefined) {
+    console.log(dropdownValidation());
+    const newPersons = JSON.parse(localStorage.getItem('persons'));
     newPersons.forEach(element => {
-      if (element.specialist === "Flying Specialist") {
-        console.log(element.id);
-        rowMaker(
-          0,
-          element.name,
-          element.id,
-          element.timestamp,
-          element.servicedDat,
-          element.specialist,
-          "table2"
-        );
+      if (element.specialist === dropdownValidation()) {
+        rowMaker(0, element.name, element.id, element.timestamp, element.servicedDat, element.specialist, 'table2');
       }
     });
-    //  });
-    // es5 style
-    // var javscriptPersons = newPersons.filter(function(personObj){
-    //   return personObj.specialist.indexOf("Flying Specialist") > -1
-    // });console.log(javscriptPersons);
-  } else {
-    console.log("didnt work");
+    document.getElementById('btn').disabled = true;
   }
 }
