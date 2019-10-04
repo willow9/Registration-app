@@ -4,53 +4,57 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content="120" />
 
     <title>Registration App</title>
 
     <link rel="stylesheet" href="https://unpkg.com/primitive-ui/dist/css/main.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="js/display.js"></script>
 </head>
 
 
-<body>
- 
-        <a class="button" href="specialist.html">Specialist Dashboard</a>
-        <a class="button" href="display.html">Queue Display</a>
-      
+<body onload='loadPage()'>
+    <a class="button" href="index.html">Administrator Dashboard</a>
+    <a class="button" href="specialist.html">Specialist Dashboard</a>
 
-    <div class="small-container">
-        <h1>Add new customer</h1>
+    <div style="display: inline-flexbox">
 
-        <form id="myForm">
-            <input id="name" type="text" placeholder="Name" required  />
-            <input id="id" type="text" placeholder="Id" required />
-            <select id="spec" required>
-                <option value="">Select</option>
-                <option value="Flying Specialist">Flying Specialist</option>
-                <option value="Invisibility Specialist">Invisibility Specialist</option>
-                <option value="Transformation Specialist">Transformation Specialist</option>
+        <div class="small-container" id="specialist1">
+            <h1>Flying Specialist</h1>
+            <table id="table3" class="striped-table">
+                <tr>
+                    <th>Next</th>
+                    <th>Registration Time</th>
+                </tr>
+            </table>
+        </div>
 
-            </select>
-            <button type="submit" onclick="validate()">Add new customer</button>
-        </form>
+        <div class="small-container" id="specialist2">
+            <h1>Invisibility Specialist</h1>
+            <table id="table4" class="striped-table">
+                <tr>
+                    <th>Next</th>
+                    <th>Registration Time</th>
+                </tr>
+            </table>
+        </div>
 
-
-
-        <h2>Customers</h2>
-
-        <table id="table" class="striped-table">
-            <tr>
-                    <th>Id</th>
-                <th>Name</th>
-                <th>Registered</th>
-                <th>Serviced</th>
-                <th>Specialist</th>
-            </tr>
-        </table>
+        <div class="small-container" id="specialist3">
+            <h1>Transformation Specialist</h1>
+            <table id="table5" class="striped-table">
+                <tr>
+                    <th>Next</th>
+                    <th>Registration Time</th>
+                </tr>
+            </table>
+        </div>
 
     </div>
+
 </body>
 
 </html>
