@@ -1,9 +1,6 @@
-/* eslint-disable indent */
-/* eslint-disable arrow-parens */
-/* eslint-disable require-jsdoc */
 function formValidation() {
-  const e = document.getElementById('spec1');
-  const dropdownValue = e.options[e.selectedIndex].value;
+  const specialist = document.getElementById('spec1');
+  const dropdownValue = specialist.options[specialist.selectedIndex].value;
   const pass = document.getElementById('password').value;
 
   if (dropdownValue == 'Flying Specialist' && pass == '1') {
@@ -15,11 +12,6 @@ function formValidation() {
 
   if (dropdownValue == 'Transformation Specialist' && pass == '3') {
     return dropdownValue;
-  }
-}
-
-function passwordvalidation() {
-  if (formValidation()) {
   }
 }
 
@@ -35,31 +27,30 @@ function logSpecialist() {
 }
 
 function fillTableForSpecialist() {
-  const newPersons = JSON.parse(localStorage.getItem('persons'));
-  newPersons.forEach(element => {
+  const persons = JSON.parse(localStorage.getItem('persons'));
+  persons.forEach(element => {
     if (element.specialist === formValidation()) {
       formatTableForSpecialist(0, element.name, element.id, element.timestamp, element.servicedDate);
       document.getElementById('title').innerHTML = formValidation();
-      console.log('mmmmm' + document.getElementById('title').innerHTML);
     }
   });
 }
 
 function addButton(id, servicedDate) {
-  var x = document.createElement('BUTTON');
+  var button = document.createElement('BUTTON');
   if (servicedDate === 'not served') {
     var text = document.createTextNode('Serve');
-    x.appendChild(text);
-    x.id = id;
-    x.onclick = function() {
+    button.appendChild(text);
+    button.id = id;
+    button.onclick = function() {
       changeStatus(this.id);
     };
   } else {
     var text = document.createTextNode('Serviced');
-    x.appendChild(text);
-    x.id = id;
+    button.appendChild(text);
+    button.id = id;
   }
-  return x;
+  return button;
 }
 
 function formatTableForSpecialist(index, name, id, timestamp, servicedDate) {
@@ -86,8 +77,6 @@ function formatTableForSpecialist(index, name, id, timestamp, servicedDate) {
 }
 
 function changeStatus(id) {
-  // const btn = document.getElementById(id);
-  // btn.innerHTML = 'Serviced';
   const persons = JSON.parse(localStorage.getItem('persons'));
   persons.forEach(person => {
     if (person.id == id) {
@@ -95,19 +84,18 @@ function changeStatus(id) {
     }
   });
   localStorage.setItem('persons', JSON.stringify(persons));
-  // document.getElementById("table2").innerHTML = "";
+  reloadTable2();
+}
 
+function reloadTable2() {
   var table = document.getElementById('table2');
-  //or use :  var table = document.all.tableid;
   for (var i = table.rows.length - 1; i > 0; i--) {
     table.deleteRow(i);
   }
-
-  const newPersons = JSON.parse(localStorage.getItem('persons'));
-  newPersons.forEach(element => {
+  const persons = JSON.parse(localStorage.getItem('persons'));
+  persons.forEach(element => {
     if (element.specialist === document.getElementById('title').innerHTML) {
       formatTableForSpecialist(0, element.name, element.id, element.timestamp, element.servicedDate);
     }
   });
 }
- 
