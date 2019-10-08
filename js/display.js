@@ -12,7 +12,7 @@ function loadBoardBySpecialist(spec, tableId) {
     .filter(function(p) {
       return p.specialist == specialist && p.servicedDate == 'not served';
     })
-    .sort((a, b) => (a.color > b.color ? 1 : -1));
+    .sort((a, b) => (a.timestamp < b.timestamp ? 1 : -1));
 
   specCustomers.forEach(element => {
     listMaker(element.id, element.timestamp, tableId);
@@ -32,20 +32,10 @@ function listMaker(id, timestamp, tableId) {
 }
 
 function showDateAndTime() {
-  var time = new Date();
-  var date = time.toString().substr(3, 12);
-  var h = time.getHours();
-  var m = time.getMinutes();
-  var s = time.getSeconds();
-  m = checkTime(m);
-  s = checkTime(s);
-  document.getElementById('time').innerHTML = h + ':' + m + ':' + s;
+  var dateAndTime = new Date();
+  var date = dateAndTime.toString().substr(3, 12);
+  var time = dateAndTime.toString().substr(16, 8);
   document.getElementById('date').innerHTML = date;
-  var t = setTimeout(showDateAndTime, 500);
-}
-function checkTime(i) {
-  if (i < 10) {
-    i = '0' + i;
-  } // add zero in front of numbers < 10
-  return i;
+  document.getElementById('time').innerHTML = time;
+  setTimeout(showDateAndTime, 500);
 }
