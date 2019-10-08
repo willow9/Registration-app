@@ -10,21 +10,21 @@
     <link rel="stylesheet" href="https://unpkg.com/primitive-ui/dist/css/main.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
 </head>
 
 
 <body onload="loadCustomers()">
- 
-        <a class="button" href="specialist.html">Specialist Dashboard</a>
-        <a class="button" href="display.html">Queue Display</a>
-      
+
+    <a class="button" href="specialist.html">Specialist Dashboard</a>
+    <a class="button" href="display.html">Queue Display</a>
+
 
     <div class="small-container">
         <h1>Add new customer</h1>
 
         <form id="myForm">
-            <input id="name" type="text" placeholder="Name" required  />
+            <input id="name" type="text" placeholder="Name" required />
             <select id="spec" required>
                 <option value="">Select</option>
                 <option value="Flying Specialist">Flying Specialist</option>
@@ -40,7 +40,7 @@
 
         <table id="table" class="striped-table">
             <tr>
-                    <th>Id</th>
+                <th>Id</th>
                 <th>Name</th>
                 <th>Registered</th>
                 <th>Serviced</th>
