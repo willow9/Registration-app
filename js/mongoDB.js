@@ -1,39 +1,60 @@
-const clientPromise = stitch.StitchClientFactory.create('mongocrud-bgxqf');
-        let client;
-        let db;
-        let login;
+// const clientPromise = stitch.StitchClientFactory.create('mongocrud-bgxqf');
+//         let client;
+//         let db;
+//         let login;
 
+//         let testVariable="hilllow";
+// function test(){
+//     console.log(variableFromIndex)
+// }
 
-        function displayCommentsOnLoad() {
-            clientPromise.then(stitchClient => {
-                client = stitchClient;
-                db = client.service('mongodb', 'mongodb-atlas').db('mongoDB');
-                login = client.login();
-                return login.then(displayComments)
+//         function displayCommentsOnLoad() {
+//             clientPromise.then(stitchClient => {
+//                 client = stitchClient;
+//                 db = client.service('mongodb', 'mongodb-atlas').db('mongoDB');
+//                 login = client.login();
+//                 // return login.then(displayComments);
+//                 login.then(()=>{db.collection('todo').find({}).limit(1000).execute().then(docs => {
+//                     // var html = docs.map(c => "<div>" + c.comment + "</div>").join("");
+//                     var html = docs.map(c => tableRowMaker(0, c.comment, c.owner_id));
+//                     // console.log(docs);
+//                     // document.getElementById("comments").innerHTML = html;
+//                 });
+//             });
                 
-            });
-        }
-        function displayComments() {
-            db.collection('todo').find({}).limit(1000).execute().then(docs => {
-                var html = docs.map(c => "<div>" + c.comment + "</div>").join("");
-                console.log(docs);
-                // document.getElementById("comments").innerHTML = html;
-            });
-        }
+                
+//             });
+//         }
+//         function displayComments() {
+//             db.collection('todo').find({}).limit(1000).execute().then(docs => {
+//                 var html = docs.map(c => "<div>" + c.comment + "</div>").join("");
+//                 console.log(docs);
+//                 // document.getElementById("comments").innerHTML = html;
+//             });
+//         }
 
-        function addComment() {
-            var foo = document.getElementById("new_comment");
-            db.collection("todo").insertOne({ owner_id: "23", comment: foo.value }).then(displayComments);
-            foo.value = "";
-        }
+//         function addComment() {
+//             var foo = document.getElementById("new_comment");
+//             db.collection("todo").insertOne({ owner_id: "23", comment: foo.value }).then(displayComments);
+//             foo.value = "";
+//         }
 
-        function deleteComment() {
-            db.collection("todo").deleteOne({ "comment": "55555" }).then(displayComments);
-        }
+//         function deleteComment() {
+//             db.collection("todo").deleteOne({ "comment": "55555" }).then(displayComments);
+//         }
 
-        function editComment() {
-            db.collection("todo").updateOne({comment: '21'}, {$set:{comment:"hey, there"}}, {upsert:true}).then(displayComments);
-        }
+//         function editComment() {
+//             db.collection("todo").updateOne({comment: '21'}, {$set:{comment:"hey, there"}}, {upsert:true}).then(displayComments);
+//         }
+
+// export function displayCommentsOnLoad(){
+//     return "technology";
+// }
+//         $.getScript('./js/index.js', function()
+// {
+//     // your-script.js is now loaded and you can use any function from it.
+//     console.log("tets");
+// });
 
 // ###########################
 
