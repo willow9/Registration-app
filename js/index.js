@@ -116,6 +116,19 @@ function getId() {
   })
   
 }
+
+function post() {
+
+  return  $.ajax({
+    url:
+      'https://webhooks.mongodb-stitch.com/api/client/v2.0/app/mongocrud-bgxqf/service/http/incoming_webhook/webhook0',
+    dataType: 'json',
+    type: 'POST',
+    data: {id: "jkhfkjhs", name: "name"},
+    success: 'success'
+  })
+  
+}
   
   function getJson(){
     return JSON.parse($.ajax({
