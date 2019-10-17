@@ -1,3 +1,13 @@
+function get() {
+  
+  return $.ajax({
+    url:
+      'https://webhooks.mongodb-stitch.com/api/client/v2.0/app/mongocrud-bgxqf/service/http/incoming_webhook/webhook0',
+    dataType: 'json',
+    type: 'get'
+  });
+}
+
 // const clientPromise = stitch.StitchClientFactory.create('mongocrud-bgxqf');
 //         let client;
 //         let db;
@@ -21,8 +31,7 @@
 //                     // document.getElementById("comments").innerHTML = html;
 //                 });
 //             });
-                
-                
+
 //             });
 //         }
 //         function displayComments() {

@@ -69,37 +69,68 @@ class Person {
   }
 }
 
+
 function loadCustomers() {
   // if (localStorage.getItem('persons') == null) {
-  //   const persons = [];
+    // const persons = [];
 
-  $.ajax({
+  return $.ajax({
     url:
       'https://webhooks.mongodb-stitch.com/api/client/v2.0/app/mongocrud-bgxqf/service/http/incoming_webhook/webhook0',
     dataType: 'json',
     type: 'get',
-    cache: false,
-    success: function(data) {
-      $(data).each(function(index, value) {
-        // persons.push(new Person(value.name, value.id, value.timestamp, value.servicedDate, value.specialist));
-        // persons.sort((a, b) => (a.timestamp > b.timestamp ? 1 : -1));
-        tableRowMaker(0, value.name, value.id, value.timestamp, value.servicedDate, value.specialist);
+    // cache: false,
+    // success: function (data)
+    // {
+    //   $(data).each(function(index, value) {
+    //     // persons.push(new Person(value.name, value.id, value.timestamp, value.servicedDate, value.specialist));
+    //     // persons.sort((a, b) => (a.timestamp > b.timestamp ? 1 : -1));
+    //     // tableRowMaker(0, value.name, value.id, value.timestamp, value.servicedDate, value.specialist);
+    //     persons.push(value.name)
+    //     // console.log(persons[0])
       });
       // localStorage.setItem('persons', JSON.stringify(persons));
+      // console.log(persons)
+      // console.log(promise);
+      // return promise
     }
-  });
+  // });
   // } else {
   //   const newPersons = JSON.parse(localStorage.getItem('persons'));
   //   newPersons.forEach(element => {
   //     tableRowMaker(0, element.name, element.id, element.timestamp, element.servicedDate, element.specialist);
   //   });
   // }
+function test(){
+  get().then(data=> { $(data).each(function(index, value) {
+    //     // persons.push(new Person(value.name, value.id, value.timestamp, value.servicedDate, value.specialist));
+    //     // persons.sort((a, b) => (a.timestamp > b.timestamp ? 1 : -1));
+        tableRowMaker(0, value.name, value.id, value.timestamp, value.servicedDate, value.specialist);
+    //     persons.push(value.name)
+        // console.log(value.name)
+      });})
+  
+ 
 }
+function print(data){
+
+  $(data).each(function(index, value) {
+          // persons.push(new Person(value.name, value.id, value.timestamp, value.servicedDate, value.specialist));
+          // persons.sort((a, b) => (a.timestamp > b.timestamp ? 1 : -1));
+          tableRowMaker(0, value.name, value.id, value.timestamp, value.servicedDate, value.specialist);
+          // console.log(value.timestamp)
+})
+}
+
+function loadCustomers2(){
+  get(print());
+};
+
+
 let valueFromDbArray;
 
 function getId() {
-
-  return  $.ajax({
+  return $.ajax({
     url:
       'https://webhooks.mongodb-stitch.com/api/client/v2.0/app/mongocrud-bgxqf/service/http/incoming_webhook/webhook0',
     dataType: 'json',
@@ -107,50 +138,57 @@ function getId() {
     global: false,
     async: false,
     success: function(data) {
-      let valueFromDb=[];
+      let valueFromDb = [];
       $(data).each(function(index, value) {
         valueFromDb.push(value.id);
       });
       valueFromDbArray = Math.max(...valueFromDb) + 1;
     }
-  })
-  
+  });
 }
 
 function post() {
+  if (validate()) {
+    const newName = document.getElementById('name').value;
+    const newId = '32';
+    const specialist = document.getElementById('spec');
+    const selectedSpecialist = specialist.options[specialist.selectedIndex].value;
+    const person = new Person(newName, newId, Date.now().toString(), 'not served', selectedSpecialist);
 
-  return  $.ajax({
-    url:
-      'https://webhooks.mongodb-stitch.com/api/client/v2.0/app/mongocrud-bgxqf/service/http/incoming_webhook/webhook0',
-    dataType: 'json',
-    type: 'POST',
-    data: {id: "jkhfkjhs", name: "name"},
-    success: 'success'
-  })
-  
-}
-  
-  function getJson(){
-    return JSON.parse($.ajax({
-        type: 'GET',
-        url: 'https://webhooks.mongodb-stitch.com/api/client/v2.0/app/mongocrud-bgxqf/service/http/incoming_webhook/webhook0',
-        dataType: 'json',
-        global: false,
-        async: false,
-        success: function (data) {
-            return data[0];
-        }
-    }).responseText);
+    return $.ajax({
+      url:
+        'https://webhooks.mongodb-stitch.com/api/client/v2.0/app/mongocrud-bgxqf/service/post/incoming_webhook/webhook1',
+      // dataType: 'json',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(person)
+    });
+  }
 }
 
+function getJson() {
+  return JSON.parse(
+    $.ajax({
+      type: 'GET',
+      url:
+        'https://webhooks.mongodb-stitch.com/api/client/v2.0/app/mongocrud-bgxqf/service/http/incoming_webhook/webhook0',
+      dataType: 'json',
+      global: false,
+      async: false,
+      success: function(data) {
+        return data[0];
+      }
+    }).responseText
+  );
+}
 
 var myJsonObj = getJson();
 var myId = JSON.parse(getId().responseText);
 
-function test(){
+function test3() {
   // console.log(myJsonObj[0].id);
   // console.log(myId);
-  console.log(valueFromDbArray)
+  console.log(valueFromDbArray);
 }
 
 function addNewCustomer() {
