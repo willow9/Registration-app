@@ -18,12 +18,12 @@
 </head>
 
 
-<body onload="test()">
+<body onload="loadCustomers()">
 
     <a class="button" href="specialist.html">Specialist Dashboard</a>
     <a class="button" href="display.html">Queue Display</a>
     <a class="button" onclick="test()">Test</a>
-    <a class="button" onclick="post()">Post</a>
+    <a class="button" onclick="addNewCustomer()">Post</a>
 
 
 
@@ -31,6 +31,8 @@
         <h1>Add new customer</h1>
 <h3 id="comments">initial</h3>
         <form id="myForm">
+            <p id='alert' class="alert" style="display: none; color: red;">All fields must be completed</p>
+            
             <input id="name" type="text" placeholder="Name" required />
             <select id="spec" required>
                 <option value="">Select</option>
@@ -38,8 +40,8 @@
                 <option value="Invisibility Specialist">Invisibility Specialist</option>
                 <option value="Transformation Specialist">Transformation Specialist</option>
             </select>
-            <button type="submit" onclick="addComment()">Add new customer</button>
-            <button type="submit" onclick="displayCommentsOnLoad()">Load</button>
+            <button class="button" type="submit" onclick="addNewCustomer(); return false">Add new customer</button>
+            <!-- <button type="submit" onclick="displayCommentsOnLoad()">Load</button> -->
         </form>
 
 

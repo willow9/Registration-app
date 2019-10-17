@@ -1,10 +1,22 @@
 function get() {
-  
+
   return $.ajax({
     url:
       'https://webhooks.mongodb-stitch.com/api/client/v2.0/app/mongocrud-bgxqf/service/http/incoming_webhook/webhook0',
     dataType: 'json',
     type: 'get'
+  });
+}
+
+function post(dataToSend){
+
+  return $.ajax({
+    url:
+      'https://webhooks.mongodb-stitch.com/api/client/v2.0/app/mongocrud-bgxqf/service/post/incoming_webhook/webhook1',
+    dataType: 'json',
+    type: 'POST',
+    contentType: 'application/json',
+    data: dataToSend
   });
 }
 
