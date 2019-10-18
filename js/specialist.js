@@ -32,7 +32,6 @@ function fillTableForSpecialist() {
   get().then(data => {
     $(data).each(function(index, value) {
       if (value.specialist === spec) {
-        console.log('good');
         formatTableForSpecialist(0, value.name, value.id, value.timestamp, value.servicedDate);
         document.getElementById('title').innerHTML = value.specialist;
       }
@@ -80,9 +79,8 @@ function formatTableForSpecialist(index, name, id, timestamp, servicedDate) {
   cell4.innerHTML = date2;
 }
 function changeStatus(id) {
-  let dataToSed = JSON.stringify({id: id, servicedDate: Date.now().toString()});
-  console.log(dataToSed);
-  post2(dataToSed);
+  let dataToSend = JSON.stringify({id: id, servicedDate: Date.now().toString()});
+  post2(dataToSend).then(()=>{reloadTable2()});
 }
 
 
@@ -90,27 +88,21 @@ function test() {
   changeStatus("67");
 }
 
-
-// function changeStatus(id) {
-//   const persons = JSON.parse(localStorage.getItem('persons'));
-//   persons.forEach(person => {
-//     if (person.id == id) {
-//       person.servicedDate = Date.now();
-//     }
-//   });
-//   localStorage.setItem('persons', JSON.stringify(persons));
-//   reloadTable2();
-// }
-
 function reloadTable2() {
   var table = document.getElementById('table2');
+  const specialist = document.getElementById('title').innerHTML;
+
   for (var i = table.rows.length - 1; i > 0; i--) {
     table.deleteRow(i);
   }
-  const persons = JSON.parse(localStorage.getItem('persons'));
-  persons.forEach(element => {
-    if (element.specialist === document.getElementById('title').innerHTML) {
-      formatTableForSpecialist(0, element.name, element.id, element.timestamp, element.servicedDate);
-    }
-  });
-}
+
+    get().then(data => {
+      $(data).each(function(index, value) {
+        if (value.specialist === specialist) {
+          formatTableForSpecialist(0, value.name, value.id, value.timestamp, value.servicedDate);
+        }
+      });
+    });
+  }
+
+
