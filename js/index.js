@@ -98,7 +98,11 @@ function validate() {
 
 function generateId() {
   promise = JSON.parse(getId());
-  return parseInt(promise) + 1;
+  let intArray = [];
+  promise.forEach(item => {
+    intArray.push(parseInt(item));
+  });
+  return Math.max(...intArray) + 1;
 }
 
 function tableRowMaker(index, name, id, timestamp, servicedDate, specialist) {
