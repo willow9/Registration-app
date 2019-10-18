@@ -15,10 +15,6 @@ function formValidation() {
   }
 }
 
-function test() {
-  console.log(formValidation());
-}
-
 function logSpecialist() {
   if (formValidation() != undefined) {
     fillTableForSpecialist();
@@ -83,17 +79,28 @@ function formatTableForSpecialist(index, name, id, timestamp, servicedDate) {
   cell3.innerHTML = date.toString().substr(3, 18);
   cell4.innerHTML = date2;
 }
-
 function changeStatus(id) {
-  const persons = JSON.parse(localStorage.getItem('persons'));
-  persons.forEach(person => {
-    if (person.id == id) {
-      person.servicedDate = Date.now();
-    }
-  });
-  localStorage.setItem('persons', JSON.stringify(persons));
-  reloadTable2();
+  let dataToSed = JSON.stringify({id: id, servicedDate: Date.now().toString()});
+  console.log(dataToSed);
+  post2(dataToSed);
 }
+
+
+function test() {
+  changeStatus("67");
+}
+
+
+// function changeStatus(id) {
+//   const persons = JSON.parse(localStorage.getItem('persons'));
+//   persons.forEach(person => {
+//     if (person.id == id) {
+//       person.servicedDate = Date.now();
+//     }
+//   });
+//   localStorage.setItem('persons', JSON.stringify(persons));
+//   reloadTable2();
+// }
 
 function reloadTable2() {
   var table = document.getElementById('table2');

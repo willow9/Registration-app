@@ -35,20 +35,18 @@ function getId(){
   }).responseText
 }
 
-function getAll(){
+function post2(dataToSend){
 
   return $.ajax({
     url:
-      'https://webhooks.mongodb-stitch.com/api/client/v2.0/app/mongocrud-bgxqf/service/http/incoming_webhook/webhook0',
+      'https://webhooks.mongodb-stitch.com/api/client/v2.0/app/mongocrud-bgxqf/service/http/incoming_webhook/updateStatus',
     dataType: 'json',
-    type: 'GET',
-    global: false,
-    async: false,
-    success: function(data) {
-      return data;
-    }
-  }).responseText
+    type: 'POST',
+    contentType: 'application/json',
+    data: dataToSend
+  });
 }
+
 
 // const clientPromise = stitch.StitchClientFactory.create('mongocrud-bgxqf');
 //         let client;
