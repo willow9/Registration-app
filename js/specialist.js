@@ -15,6 +15,10 @@ function formValidation() {
   }
 }
 
+function test() {
+  console.log(formValidation());
+}
+
 function logSpecialist() {
   if (formValidation() != undefined) {
     fillTableForSpecialist();
@@ -26,13 +30,17 @@ function logSpecialist() {
   }
 }
 
+
 function fillTableForSpecialist() {
-  const persons = JSON.parse(localStorage.getItem('persons'));
-  persons.forEach(element => {
-    if (element.specialist === formValidation()) {
-      formatTableForSpecialist(0, element.name, element.id, element.timestamp, element.servicedDate);
-      document.getElementById('title').innerHTML = formValidation();
-    }
+  let spec= formValidation();
+  get().then(data => {
+    $(data).each(function(index, value) {
+      if (value.specialist === spec) {
+        console.log('good');
+        formatTableForSpecialist(0, value.name, value.id, value.timestamp, value.servicedDate);
+        document.getElementById('title').innerHTML = value.specialist;
+      }
+    });
   });
 }
 
