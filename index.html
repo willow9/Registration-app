@@ -5,33 +5,43 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Registration App</title>
+    <title>Registration app</title>
 
     <link rel="stylesheet" href="https://unpkg.com/primitive-ui/dist/css/main.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
+    <script src="https://s3.amazonaws.com/stitch-sdks/js/library/v3/stable/stitch.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <!-- <script src="https://s3.amazonaws.com/stitch-sdks/js/library/v3/stable/stitch.min.js"></script> -->
+    <script type="text/javascript" src="js/mongoDB.js"></script>
 </head>
 
 
 <body onload="loadCustomers()">
- 
-        <a class="button" href="specialist.html">Specialist Dashboard</a>
-        <a class="button" href="display.html">Queue Display</a>
-      
+
+    <a class="button" href="specialist.html">Specialist Dashboard</a>
+    <a class="button" href="display.html">Queue Display</a>
+    <a class="button" onclick="generateId()">Test</a>
+    <a class="button" onclick="addNewCustomer()">Post</a>
+
+
 
     <div class="small-container">
         <h1>Add new customer</h1>
-
+<h3 id="comments">initial</h3>
         <form id="myForm">
-            <input id="name" type="text" placeholder="Name" required  />
+            <p id='alert' class="alert" style="display: none; color: red;">All fields must be completed</p>
+            
+            <input id="name" type="text" placeholder="Name" required />
             <select id="spec" required>
                 <option value="">Select</option>
                 <option value="Flying Specialist">Flying Specialist</option>
                 <option value="Invisibility Specialist">Invisibility Specialist</option>
                 <option value="Transformation Specialist">Transformation Specialist</option>
             </select>
-            <button type="submit" onclick="addNewCustomer()">Add new customer</button>
+            <button class="button" type="submit" onclick="addNewCustomer(); return false">Add new customer</button>
+            <!-- <button type="submit" onclick="displayCommentsOnLoad()">Load</button> -->
         </form>
 
 
@@ -40,7 +50,7 @@
 
         <table id="table" class="striped-table">
             <tr>
-                    <th>Id</th>
+                <th>Id</th>
                 <th>Name</th>
                 <th>Registered</th>
                 <th>Serviced</th>

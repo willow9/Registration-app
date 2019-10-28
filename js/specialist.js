@@ -1,9 +1,6 @@
-/* eslint-disable indent */
-/* eslint-disable arrow-parens */
-/* eslint-disable require-jsdoc */
 function formValidation() {
-  const e = document.getElementById('spec1');
-  const dropdownValue = e.options[e.selectedIndex].value;
+  const specialist = document.getElementById('spec1');
+  const dropdownValue = specialist.options[specialist.selectedIndex].value;
   const pass = document.getElementById('password').value;
 
   if (dropdownValue == 'Flying Specialist' && pass == '1') {
@@ -18,11 +15,6 @@ function formValidation() {
   }
 }
 
-function passwordvalidation() {
-  if (formValidation()) {
-  }
-}
-
 function logSpecialist() {
   if (formValidation() != undefined) {
     fillTableForSpecialist();
@@ -34,32 +26,34 @@ function logSpecialist() {
   }
 }
 
+
 function fillTableForSpecialist() {
-  const newPersons = JSON.parse(localStorage.getItem('persons'));
-  newPersons.forEach(element => {
-    if (element.specialist === formValidation()) {
-      formatTableForSpecialist(0, element.name, element.id, element.timestamp, element.servicedDate);
-      document.getElementById('title').innerHTML = formValidation();
-      console.log('mmmmm' + document.getElementById('title').innerHTML);
-    }
+  let spec= formValidation();
+  get().then(data => {
+    $(data).each(function(index, value) {
+      if (value.specialist === spec) {
+        formatTableForSpecialist(0, value.name, value.id, value.timestamp, value.servicedDate);
+        document.getElementById('title').innerHTML = value.specialist;
+      }
+    });
   });
 }
 
 function addButton(id, servicedDate) {
-  var x = document.createElement('BUTTON');
+  var button = document.createElement('BUTTON');
   if (servicedDate === 'not served') {
     var text = document.createTextNode('Serve');
-    x.appendChild(text);
-    x.id = id;
-    x.onclick = function() {
+    button.appendChild(text);
+    button.id = id;
+    button.onclick = function() {
       changeStatus(this.id);
     };
   } else {
     var text = document.createTextNode('Serviced');
-    x.appendChild(text);
-    x.id = id;
+    button.appendChild(text);
+    button.id = id;
   }
-  return x;
+  return button;
 }
 
 function formatTableForSpecialist(index, name, id, timestamp, servicedDate) {
@@ -84,30 +78,31 @@ function formatTableForSpecialist(index, name, id, timestamp, servicedDate) {
   cell3.innerHTML = date.toString().substr(3, 18);
   cell4.innerHTML = date2;
 }
-
 function changeStatus(id) {
-  // const btn = document.getElementById(id);
-  // btn.innerHTML = 'Serviced';
-  const persons = JSON.parse(localStorage.getItem('persons'));
-  persons.forEach(person => {
-    if (person.id == id) {
-      person.servicedDate = Date.now();
-    }
-  });
-  localStorage.setItem('persons', JSON.stringify(persons));
-  // document.getElementById("table2").innerHTML = "";
+  let dataToSend = JSON.stringify({id: id, servicedDate: Date.now().toString()});
+  post2(dataToSend).then(()=>{reloadTable2()});
+}
 
+
+function test() {
+  changeStatus("67");
+}
+
+function reloadTable2() {
   var table = document.getElementById('table2');
-  //or use :  var table = document.all.tableid;
+  const specialist = document.getElementById('title').innerHTML;
+
   for (var i = table.rows.length - 1; i > 0; i--) {
     table.deleteRow(i);
   }
 
-  const newPersons = JSON.parse(localStorage.getItem('persons'));
-  newPersons.forEach(element => {
-    if (element.specialist === document.getElementById('title').innerHTML) {
-      formatTableForSpecialist(0, element.name, element.id, element.timestamp, element.servicedDate);
-    }
-  });
-}
- 
+    get().then(data => {
+      $(data).each(function(index, value) {
+        if (value.specialist === specialist) {
+          formatTableForSpecialist(0, value.name, value.id, value.timestamp, value.servicedDate);
+        }
+      });
+    });
+  }
+
+

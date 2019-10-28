@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content="120" />
+    <meta http-equiv="refresh" content="1000" />
 
     <title>Registration App</title>
 
@@ -12,49 +12,83 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     <script type="text/javascript" src="js/display.js"></script>
+    <script type="text/javascript" src="js/mongoDB.js"></script>
+
+
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            color: white;
+            text-align: center;
+        }
+    </style>
 </head>
 
 
 <body onload='loadPage()'>
-    <a class="button" href="index.html">Administrator Dashboard</a>
-    <a class="button" href="specialist.html">Specialist Dashboard</a>
 
-    <div style="display: inline-flexbox">
 
-        <div class="small-container" id="specialist1">
-            <h1>Flying Specialist</h1>
-            <table id="table3" class="striped-table">
-                <tr>
-                    <th>Next</th>
-                    <th>Registration Time</th>
-                </tr>
-            </table>
-        </div>
-
-        <div class="small-container" id="specialist2">
-            <h1>Invisibility Specialist</h1>
-            <table id="table4" class="striped-table">
-                <tr>
-                    <th>Next</th>
-                    <th>Registration Time</th>
-                </tr>
-            </table>
-        </div>
-
-        <div class="small-container" id="specialist3">
-            <h1>Transformation Specialist</h1>
-            <table id="table5" class="striped-table">
-                <tr>
-                    <th>Next</th>
-                    <th>Registration Time</th>
-                </tr>
-            </table>
-        </div>
-
+    <div class="jumbotron text-center" onload='showDateAndTime()'>
+        <h1 id='time'></h1>
+        <p id='date'></p>
     </div>
 
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm" id="specialist1">
+                <h3>Flying Specialist</h3>
+                <table id="table3" class="striped-table">
+                    <tr>
+                        <th>Next</th>
+                        <th>Registration Time</th>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-sm" id="specialist2">
+                <h3>Invisibility Specialist</h3>
+                <table id="table4" class="striped-table">
+                    <tr>
+                        <th>Next</th>
+                        <th>Registration Time</th>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-sm" id="specialist3">
+                <h3>Transformation Specialist</h3>
+                <table id="table5" class="striped-table">
+                    <tr>
+                        <th>Next</th>
+                        <th>Registration Time</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a class="button" href="index.html">Administrator Dashboard</a>
+        <a class="button" href="specialist.html">Specialist Dashboard</a>
+        <div>
 </body>
 
 </html>
