@@ -6,16 +6,12 @@ function loadPage() {
 }
 
 function loadBoardBySpecialist(spec, tableId) {
-  const persons = JSON.parse(localStorage.getItem('persons'));
-  const specialist = spec;
-  specCustomers = persons
-    .filter(function(p) {
-      return p.specialist == specialist && p.servicedDate == 'not served';
-    })
-    .sort((a, b) => (a.timestamp < b.timestamp ? 1 : -1));
-
-  specCustomers.forEach(element => {
-    listMaker(element.id, element.timestamp, tableId);
+  get().then(data => {
+    $(data).each(function(index, value) {
+      if (value.specialist === spec && value.servicedDate == 'not served') {
+        listMaker(value.id, value.timestamp, tableId);
+      }
+    });
   });
 }
 
