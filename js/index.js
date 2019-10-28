@@ -38,8 +38,7 @@ function validate() {
 
   if (!newName.validity.valueMissing && selectedSpecialist != '') {
     return true;
-  } else document.getElementById('alert').style.display = 'block';
-  return false;
+  } else return false;
 }
 
 function generateId() {
