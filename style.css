@@ -1,0 +1,10 @@
+#alert {
+  display: none;
+  color: #ff0066;
+  font-size: 1.25rem;
+}
+
+#header {
+  position: sticky;
+  top: 0;
+}

@@ -1,53 +1,3 @@
-// var express = require('express');
-// const clientPromise = stitch.StitchClientFactory.create('mongocrud-bgxqf');
-// let client;
-// let db;
-// let login;
-
-// function displayCommentsOnLoad() {
-//   clientPromise.then(stitchClient => {
-//     client = stitchClient;
-//     db = client.service('mongodb', 'mongodb-atlas').db('mongoDB');
-//     login = client.login();
-//     // return login.then(displayComments);
-//     login.then(() => {
-//       db.collection('todo')
-//         .find({})
-//         .limit(100)
-//         .execute()
-//         .then(docs => {
-//           // var html = docs.map(c => "<div>" + c.comment + "</div>").join("");
-//           docs.map(c => tableRowMaker(0, c.name, c.id, c.timestamp, c.servicedDate, c.specialist));
-//           // console.log(docs);
-//           // document.getElementById("comments").innerHTML = html;
-//         });
-//     });
-//   });
-// }
-
-// function addComment() {
-//   const obj = addNewCustomer2();
-//   // clientPromise.then(stitchClient => {
-//   //   client = stitchClient;
-//   db = client.service('mongodb', 'mongodb-atlas').db('mongoDB');
-//   login = client.login();
-//   login.then(() => db.collection('todo').insertOne(obj));
-//   // .then(displayComments);
-//   // foo.value = "";
-//   // });
-// }
-
-// function deleteComment() {
-//   db.collection('todo')
-//     .deleteOne({ comment: '55555' })
-//     .then(displayComments);
-// }
-
-// function editComment() {
-//   db.collection('todo')
-//     .updateOne({ comment: '21' }, { $set: { comment: 'hey, there' } }, { upsert: true })
-//     .then(displayComments);
-// }
 class Person {
   constructor(name, id, timestamp, servicedDate, specialist) {
     this.name = name;
@@ -58,13 +8,9 @@ class Person {
   }
 }
 
-function submitForm() {}
-
 function loadCustomers() {
   get().then(data => {
     $(data).each(function(index, value) {
-      // persons.push(new Person(value.name, value.id, value.timestamp, value.servicedDate, value.specialist));
-      // persons.sort((a, b) => (a.timestamp > b.timestamp ? 1 : -1));
       tableRowMaker(0, value.name, value.id, value.timestamp, value.servicedDate, value.specialist);
     });
   });
