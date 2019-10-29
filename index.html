@@ -20,6 +20,7 @@
 
 
 <body onload="loadCustomers()">
+
     <div id='header' class="small-container">
         <a class="button" href="specialist.html">Specialist Dashboard</a>
         <a class="button" href="display.html">Queue Display</a>
@@ -28,7 +29,7 @@
 
     <div class="small-container">
         <h1>Add new customer</h1>
-        <form id="newCustomerForm" onsubmit="return false">
+        <form onsubmit="return false">
             <p id='alert'>All fields must be completed</p>
 
             <input id="name" type="text" placeholder="Name" required />
@@ -38,10 +39,10 @@
                 <option value="Invisibility Specialist">Invisibility Specialist</option>
                 <option value="Transformation Specialist">Transformation Specialist</option>
             </select>
-            <button  type="submit" onclick="addNewCustomer()">Add new customer</button>
+            <button type="submit" onclick="addNewCustomer()">Add new customer</button>
         </form>
 
-        
+
         <h2>Customers</h2>
 
         <table id="table" class="striped-table">

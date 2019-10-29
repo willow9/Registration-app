@@ -8,3 +8,15 @@
   position: sticky;
   top: 0;
 }
+
+#logOut {
+  visibility: hidden;
+}
+
+.disabled {
+  background-color: grey;
+  cursor: not-allowed;
+  pointer-events: none;
+  width: 5.3125em;
+  text-align:center;
+}

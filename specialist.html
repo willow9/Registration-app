@@ -8,6 +8,7 @@
     <title>Registration App</title>
 
     <link rel="stylesheet" href="https://unpkg.com/primitive-ui/dist/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="style.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
@@ -18,18 +19,18 @@
 
 <body>
 
-    <a class="button" href="index.html">Administrator Dashboard</a>
-    <a class="button" href="display.html">Queue Display</a>
-    <a class="button" id="logOut" style='visibility:hidden' onclick=location.reload()>Log out</a>
-    <a class="button"  onclick=test()>test</a>
-
+    <div id='header' class="small-container">
+        <a class="button" href="index.html">Administrator Dashboard</a>
+        <a class="button" href="display.html">Queue Display</a>
+        <a class="button" id="logOut" onclick=location.reload()>Log Out</a>
+    </div>
 
     <div class="small-container">
 
         <div id="loginForm">
             <h1>Login</h1>
-
-            <form id="myForm2" onsubmit="return false">
+            <p id='alert'>Incorrect Password.</p>
+            <form id="specialistForm" onsubmit="return false">
 
                 <select id="spec1" required>
                     <option value="">Select</option>
