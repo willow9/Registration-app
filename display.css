@@ -1,0 +1,62 @@
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(38, 19, 53);
+  text-align: center;
+}
+
+.large-container {
+  background-color: rgb(38, 19, 53);
+  color: lightseagreen;
+  padding: 25px;
+}
+
+.striped-table {
+  color: lawngreen;
+}
+
+h3 {
+  font-size: 5rem;
+  color: rgb(160, 155, 238);
+  padding: 25px;
+}
+#time {
+  font-size: 5rem;
+  color: rgb(223, 237, 238);
+}
+
+#date {
+  font-size: 3rem;
+  color: rgb(223, 237, 238);
+}
+
+.jumbo {
+  text-align: center;
+  margin-bottom: 0;
+  background-color: rgb(38, 19, 53);
+  display: grid;
+  padding: 25px;
+  font-size: 40px;
+}
+
+.table-borderless {
+  font-size: 25px;
+}
+
+tbody > :nth-child(2)>:nth-child(1) {
+  border: solid;
+  color: lime;
+}
+
+a.button {
+  background: transparent;
+  border-color: rgb(75, 131, 89);
+  font-weight: unset;
+}
+
+a.button:hover {
+  background: rgb(9, 85, 81);
+  font-weight: unset;
+  border-color: rgb(75, 131, 89);
+}

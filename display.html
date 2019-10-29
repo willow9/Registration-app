@@ -9,9 +9,11 @@
     <title>Registration App</title>
 
     <link rel="stylesheet" href="https://unpkg.com/primitive-ui/dist/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="display.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -28,34 +30,22 @@
     <script type="text/javascript" src="js/display.js"></script>
     <script type="text/javascript" src="js/mongoDB.js"></script>
 
-
-    <style>
-        .footer {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            color: white;
-            text-align: center;
-        }
-    </style>
 </head>
 
 
 <body onload='loadPage()'>
 
-
-    <div class="jumbotron text-center" onload='showDateAndTime()'>
+    <div class="jumbo" onload='showDateAndTime()'>
         <h1 id='time'></h1>
         <p id='date'></p>
     </div>
 
-    <div class="container">
+    <div class="large-container">
         <div class="row">
 
             <div class="col-sm" id="specialist1">
                 <h3>Flying Specialist</h3>
-                <table id="table3" class="striped-table">
+                <table id="table3" class="table-borderless ">
                     <tr>
                         <th>Next</th>
                         <th>Registration Time</th>
@@ -65,7 +55,7 @@
 
             <div class="col-sm" id="specialist2">
                 <h3>Invisibility Specialist</h3>
-                <table id="table4" class="striped-table">
+                <table id="table4" class="table-borderless">
                     <tr>
                         <th>Next</th>
                         <th>Registration Time</th>
@@ -75,7 +65,7 @@
 
             <div class="col-sm" id="specialist3">
                 <h3>Transformation Specialist</h3>
-                <table id="table5" class="striped-table">
+                <table id="table5" class="table-borderless ">
                     <tr>
                         <th>Next</th>
                         <th>Registration Time</th>

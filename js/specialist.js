@@ -24,6 +24,7 @@ function logSpecialist() {
     document.getElementById('loginForm').hidden = true;
     document.getElementById('specialistTable').hidden = false;
     document.getElementById('logOut').style.visibility = 'visible';
+    document.getElementsByClassName('sticky')[0].hidden = true;
   }
 }
 
