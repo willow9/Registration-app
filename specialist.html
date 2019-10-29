@@ -11,7 +11,6 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/specialist.js"></script>
     <script type="text/javascript" src="js/mongoDB.js"></script>
 </head>
@@ -24,6 +23,14 @@
         <a class="button" href="display.html">Queue Display</a>
         <a class="button" id="logOut" onclick=location.reload()>Log Out</a>
     </div>
+
+    <div class="sticky">
+        <b>Password:<br></b> FlyingSpecialist - 1<br>
+        InvisibilitySpecialist  - 2<br>
+        TransformationSpecialist  - 3<br> 
+
+    </div>
+
 
     <div class="small-container">
 
@@ -46,7 +53,7 @@
         <div id="specialistTable" hidden>
             <h2 id="title">Specialist</h2>
 
-            <table id="table2" class="striped-table">
+            <table id="table2">
                 <tr>
                     <th>Id</th>
                     <th>Name</th>

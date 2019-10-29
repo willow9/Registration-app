@@ -60,11 +60,11 @@ function addButton(id, servicedDate) {
 function formatTableForSpecialist(index, name, id, timestamp, servicedDate) {
   var button = addButton(id, servicedDate);
 
-  date = new Date(timestamp * 1);
+  registrationDate = new Date(timestamp * 1);
   if (servicedDate != 'not served') {
-    date2 = new Date(servicedDate * 1).toString().substr(3, 18);
+    serviceDate = new Date(servicedDate * 1).toString().substr(3, 18);
   } else {
-    date2 = servicedDate;
+    serviceDate = servicedDate;
   }
 
   const table = document.getElementById('table2');
@@ -76,18 +76,14 @@ function formatTableForSpecialist(index, name, id, timestamp, servicedDate) {
   row.appendChild(button);
   cell1.innerHTML = id;
   cell2.innerHTML = name;
-  cell3.innerHTML = date.toString().substr(3, 18);
-  cell4.innerHTML = date2;
+  cell3.innerHTML = registrationDate.toString().substr(3, 18);
+  cell4.innerHTML = serviceDate;
 }
 function changeStatus(id) {
   let dataToSend = JSON.stringify({ id: id, servicedDate: Date.now().toString() });
   post2(dataToSend).then(() => {
     reloadTable2();
   });
-}
-
-function test() {
-  changeStatus('67');
 }
 
 function reloadTable2() {
