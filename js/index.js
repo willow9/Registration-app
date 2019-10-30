@@ -25,9 +25,15 @@ function addNewCustomer() {
     const person = new Person(newName, newId.toString(), Date.now().toString(), 'not served', selectedSpecialist);
     const dataToSend = JSON.stringify(person);
 
-    post(dataToSend).then(() => {
-      location.reload();
-    });
+    // post(dataToSend).then(() => {          //doesn't work
+    //   location.reload(true);
+    // });
+
+    
+    post(dataToSend); 
+
+    setTimeout(() => location.reload(true), 500);
+    // setTimeout(location.reload(true), 500); //doesn't work
   }
 }
 

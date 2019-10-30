@@ -11,6 +11,7 @@ function get() {
 function post(dataToSend){
 
   return $.ajax({
+    async :true,
     url:
       'https://webhooks.mongodb-stitch.com/api/client/v2.0/app/mongocrud-bgxqf/service/post/incoming_webhook/webhook1',
     dataType: 'json',
