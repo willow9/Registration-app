@@ -7,6 +7,9 @@ function loadPage() {
 
 function loadBoardBySpecialist(spec, tableId) {
   get().then(data => {
+    data.sort((person1, person2) => {
+      return parseInt(person2.timestamp) - parseInt(person1.timestamp);
+    });
     $(data).each(function(index, value) {
       if (value.specialist === spec && value.servicedDate == 'not served') {
         listMaker(value.id, value.timestamp, tableId);
