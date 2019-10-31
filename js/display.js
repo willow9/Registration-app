@@ -7,14 +7,16 @@ function loadPage() {
 
 function loadBoardBySpecialist(spec, tableId) {
   get().then(data => {
-    data.sort((person1, person2) => {
-      return parseInt(person2.timestamp) - parseInt(person1.timestamp);
-    });
-    $(data).each(function(index, value) {
-      if (value.specialist === spec && value.servicedDate == 'not served') {
+    $(data)
+      .filter((index, value) => {
+        return value.specialist === spec && value.servicedDate == 'not served';
+      })
+      .sort((person1, person2) => {
+        return parseInt(person2.timestamp) - parseInt(person1.timestamp);
+      })
+      .each((index, value) => {
         listMaker(value.id, value.timestamp, tableId);
-      }
-    });
+      });
   });
 }
 
