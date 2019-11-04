@@ -7,7 +7,7 @@ Application consists of three pages: administrator, specialist and waiting room 
 **To access the specialist page and manage the users assigned to the specialist**, you need to select a specialist and enter passw ord. After that users who belongs to specialist is displayed. Specialist can see all his customes with registration to queue time and status. After specialist ends consultation, he/she clicks the button on current customer row and changes customer status from not served to end of service date and time.<br/>
 **On waiting room board page is displayed customers list sorted by specialist and place in queue**.<br/>
 ## Demo
-https://willow9.github.io/willow9/
+https://willow9.github.io/Registration-app/
 
 ## Database
 This application uses Mongo DB Atlas. Document in mongo db consist of following fields:
