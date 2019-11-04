@@ -82,7 +82,7 @@ function formatTableForSpecialist(index, name, id, timestamp, servicedDate) {
 }
 function changeStatus(id) {
   let dataToSend = JSON.stringify({ id: id, servicedDate: Date.now().toString() });
-  post2(dataToSend).then(() => {
+  put(dataToSend).then(() => {
     reloadTable2();
   });
 }
