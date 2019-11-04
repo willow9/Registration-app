@@ -1,0 +1,39 @@
+.disabled {
+  width: 5.3125em;
+  background-color: grey;
+  text-align: center;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.sticky {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  z-index: 150;
+  transform: rotate(-5deg);
+  
+  width: 13.125rem;
+  height: 9.375rem;
+  margin: -0.625rem 0.625rem 0.625rem;
+  padding: 0.625rem;
+  color: #000;
+  background: rgba(211, 233, 18, 0.897);
+  box-shadow: -0.125rem 0.125rem 0.125rem rgba(0, 0, 0, 0.4);
+  font-family: 'Comic Sans MS', 'Comic Sans', 'Chalkboard SE', 'Comic Neue', cursive;
+  font-size: 1rem;
+}
+#alert {
+  display: none;
+  color: #ff0066;
+  font-size: 1.25rem;
+}
+
+#header {
+  position: sticky;
+  top: 0;
+}
+
+#logOut {
+  visibility: hidden;
+}

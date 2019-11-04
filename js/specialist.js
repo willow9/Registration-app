@@ -6,29 +6,30 @@ function formValidation() {
   if (dropdownValue == 'Flying Specialist' && pass == '1') {
     return dropdownValue;
   }
+
   if (dropdownValue == 'Invisibility Specialist' && pass == '2') {
     return dropdownValue;
   }
 
   if (dropdownValue == 'Transformation Specialist' && pass == '3') {
     return dropdownValue;
-  }
+  } else document.getElementById('alert').style.display = 'block';
 }
 
 function logSpecialist() {
   if (formValidation() != undefined) {
     fillTableForSpecialist();
     document.getElementById('login').disabled = true;
-    document.getElementById('myForm2').reset();
+    document.getElementById('specialistForm').reset();
     document.getElementById('loginForm').hidden = true;
     document.getElementById('specialistTable').hidden = false;
     document.getElementById('logOut').style.visibility = 'visible';
+    document.getElementsByClassName('sticky')[0].hidden = true;
   }
 }
 
-
 function fillTableForSpecialist() {
-  let spec= formValidation();
+  let spec = formValidation();
   get().then(data => {
     $(data).each(function(index, value) {
       if (value.specialist === spec) {
@@ -40,18 +41,19 @@ function fillTableForSpecialist() {
 }
 
 function addButton(id, servicedDate) {
-  var button = document.createElement('BUTTON');
+  let button = document.createElement('BUTTON');
   if (servicedDate === 'not served') {
-    var text = document.createTextNode('Serve');
+    let text = document.createTextNode('Serve');
     button.appendChild(text);
     button.id = id;
     button.onclick = function() {
       changeStatus(this.id);
     };
   } else {
-    var text = document.createTextNode('Serviced');
+    let text = document.createTextNode('Served');
     button.appendChild(text);
     button.id = id;
+    button.className = 'disabled';
   }
   return button;
 }
@@ -59,11 +61,11 @@ function addButton(id, servicedDate) {
 function formatTableForSpecialist(index, name, id, timestamp, servicedDate) {
   var button = addButton(id, servicedDate);
 
-  date = new Date(timestamp * 1);
+  registrationDate = new Date(timestamp * 1);
   if (servicedDate != 'not served') {
-    date2 = new Date(servicedDate * 1).toString().substr(3, 18);
+    serviceDate = new Date(servicedDate * 1).toString().substr(3, 18);
   } else {
-    date2 = servicedDate;
+    serviceDate = servicedDate;
   }
 
   const table = document.getElementById('table2');
@@ -75,17 +77,14 @@ function formatTableForSpecialist(index, name, id, timestamp, servicedDate) {
   row.appendChild(button);
   cell1.innerHTML = id;
   cell2.innerHTML = name;
-  cell3.innerHTML = date.toString().substr(3, 18);
-  cell4.innerHTML = date2;
+  cell3.innerHTML = registrationDate.toString().substr(3, 18);
+  cell4.innerHTML = serviceDate;
 }
 function changeStatus(id) {
-  let dataToSend = JSON.stringify({id: id, servicedDate: Date.now().toString()});
-  post2(dataToSend).then(()=>{reloadTable2()});
-}
-
-
-function test() {
-  changeStatus("67");
+  let dataToSend = JSON.stringify({ id: id, servicedDate: Date.now().toString() });
+  put(dataToSend).then(() => {
+    reloadTable2();
+  });
 }
 
 function reloadTable2() {
@@ -96,13 +95,11 @@ function reloadTable2() {
     table.deleteRow(i);
   }
 
-    get().then(data => {
-      $(data).each(function(index, value) {
-        if (value.specialist === specialist) {
-          formatTableForSpecialist(0, value.name, value.id, value.timestamp, value.servicedDate);
-        }
-      });
+  get().then(data => {
+    $(data).each(function(index, value) {
+      if (value.specialist === specialist) {
+        formatTableForSpecialist(0, value.name, value.id, value.timestamp, value.servicedDate);
+      }
     });
-  }
-
-
+  });
+}
